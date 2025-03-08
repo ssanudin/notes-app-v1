@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A notes application to manage your tasks and notes efficiently."
+    />
+    <meta property="og:title" content="Notes App" />
+    <meta
+      property="og:description"
+      content="A notes application to manage your tasks and notes efficiently."
+    />
+    <meta property="og:image" content="./images/preview.png" />
+    <meta
+      property="og:url"
+      content="https://ssanudin.github.io/notes-app-v1/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Notes App" />
+    <meta
+      name="twitter:description"
+      content="A notes application to manage your tasks and notes efficiently."
+    />
+    <meta name="twitter:image" content="./images/preview.png" />
+
+    <title>Notes App</title>
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <template id="noteItem">
+      <style>
+        :host {
+          display: block;
+          width: 100%;
+        }
+
+        .note-item {
+          background-color: var(--yellownote);
+          border-radius: 1rem;
+          padding: 1.5rem 2rem 1rem;
+          transition: all 150ms linear;
+        }
+
+        .note-item:hover {
+          scale: 1.04;
+        }
+
+        .note-item__title {
+          font-weight: 700;
+          font-size: 1.35rem;
+          border-bottom: 1px solid var(--fontcolor);
+          padding-bottom: 1rem;
+          margin-top: 0.2rem;
+          margin-bottom: 1rem;
+        }
+
+        .note-item__body {
+          font-size: 1rem;
+          word-wrap: break-word;
+          word-break: break-all;
+        }
+
+        .note-item__date-created,
+        .note-item__time-created {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.9rem;
+          margin: 0.5rem 0;
+        }
+
+        .note-item__time-created {
+          margin-top: 2.5rem;
+        }
+
+        .note-item__time-created > span {
+          display: flex;
+          align-items: center;
+        }
+
+        .note-item__time-created > span > img {
+          display: inline;
+          margin-right: 0.25rem;
+        }
+
+        .yellow {
+          background-color: var(--yellownote);
+        }
+
+        .red {
+          background-color: var(--rednote);
+        }
+
+        .blue {
+          background-color: var(--bluenote);
+        }
+
+        button {
+          appearance: none;
+          -moz-appearance: none;
+          -webkit-appearance: none;
+          position: relative;
+          background: transparent;
+          border: none;
+          border-radius: 100%;
+          cursor: pointer;
+          padding: 0.5rem;
+          width: 3rem;
+          height: 3rem;
+          transition: all 150ms linear;
+        }
+
+        button::after {
+          content: attr(tooltip);
+          font-size: 0.7rem;
+          font-weight: 400;
+          position: absolute;
+          bottom: 110%;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: var(--fontcolor);
+          color: #fff;
+          padding: 0.5rem;
+          border-radius: 0.25rem;
+          white-space: nowrap;
+          opacity: 0;
+          transition: opacity 0.2s ease;
+          pointer-events: none;
+        }
+
+        button:hover {
+          scale: 1.1;
+          box-shadow: 0 0.25rem 0.8rem rgba(0, 0, 0, 0.15);
+          border: 1px solid #fff;
+        }
+
+        button:hover::after {
+          opacity: 1;
+        }
+
+        button:hover img {
+          scale: 1.2;
+        }
+
+        button:hover.toggle-archive-status {
+          background-color: var(--bluenote);
+        }
+
+        button:hover.delete-note {
+          background-color: var(--rednote);
+        }
+
+        button:active {
+          scale: 0.9;
+        }
+
+        @media screen and (min-width: 576px) {
+          .note-item:hover {
+            scale: 1.055;
+          }
+        }
+
+        @media screen and (min-width: 768px) {
+          .note-item:hover {
+            scale: 1.075;
+          }
+        }
+      </style>
+
+      <div data-noteid="" class="note-item yellow">
+        <p class="note-item__date-created">
+          <span></span>
+          <button
+            type="button"
+            class="toggle-archive-status"
+            tooltip="Ubah status arsip"
+          >
+            <img src="" alt="Toggle archive status" />
+          </button>
+        </p>
+        <h3 class="note-item__title"></h3>
+        <p class="note-item__body"></p>
+        <p class="note-item__time-created">
+          <span>
+            <img src="./images/timer.svg" alt="Jam catatan dibuat" />
+            <span class="time"></span>, <span class="day"></span>
+          </span>
+          <button type="button" class="delete-note" tooltip="Hapus catatan">
+            <img src="./images/delete.svg" alt="Hapus catatan" />
+          </button>
+        </p>
+      </div>
+    </template>
+
+    <header>
+      <app-header class="header-container"></app-header>
+    </header>
+
+    <sidebar-menu></sidebar-menu>
+
+    <main>
+      <section class="add-note-container" hidden>
+        <add-note-form></add-note-form>
+        <button type="button" class="close-add-note-form">
+          Tutup form <img src="./images/add.svg" alt="Tutup form" />
+        </button>
+      </section>
+      <section class="notes-container">
+        <note-list></note-list>
+      </section>
+    </main>
+
+    <footer>
+      <hr />
+      <app-footer class="footer-container"></app-footer>
+    </footer>
+  </body>
+</html>

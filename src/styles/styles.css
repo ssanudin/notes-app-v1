@@ -1,0 +1,158 @@
+:root,
+:host {
+  --bgcolor: #fff;
+  --bgmain: #eff2f3;
+  --fontcolor: #262936;
+  --bluenote: #6baed9;
+  --yellownote: #e5d987;
+  --rednote: #efabac;
+  --accentcolor: #b79d4e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  line-height: 1.5;
+  background-color: var(--bgcolor);
+  color: var(--fontcolor);
+
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar sidebar"
+    "main main"
+    "footer footer";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 1fr;
+}
+
+header {
+  grid-area: header;
+}
+
+sidebar-menu {
+  grid-area: sidebar;
+}
+
+main {
+  grid-area: main;
+  background-color: var(--bgmain);
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  padding: 3rem 1rem;
+  width: 100%;
+  min-height: calc(100vh - 280px);
+  box-shadow: 1px 1px 32px 0px inset rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  grid-area: footer;
+}
+
+.header-container {
+  padding: 1.5rem 2rem;
+}
+
+.add-note-container {
+  max-height: 0px;
+  margin-bottom: 4rem;
+  transition: all 150ms linear;
+}
+
+.notes-container {
+  min-height: 300px;
+  transition: all 150ms linear;
+}
+
+.footer-container {
+  padding: 2rem;
+}
+
+.close-add-note-form {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  gap: 0.4rem;
+  margin: 1.5rem auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 150ms linear;
+}
+
+.close-add-note-form:hover {
+  font-size: 1.1rem;
+}
+
+.close-add-note-form:active {
+  font-size: 0.9rem;
+}
+
+.close-add-note-form img {
+  transform: rotate(45deg);
+}
+
+.close-add-note-form:hover img {
+  scale: 1.1;
+}
+
+.close-add-note-form:active img {
+  font-size: 0.9rem;
+}
+
+.icon-loading {
+  width: 3rem;
+}
+
+hr {
+  border-top: 1px dashed var(--fontcolor);
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 576px) {
+  main {
+    min-height: calc(100vh - 96px);
+    padding: 3rem 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer main";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 1fr;
+  }
+
+  main {
+    border-top-right-radius: 0;
+    padding: 3rem 4rem;
+  }
+
+  hr {
+    width: calc(100% - 1.5rem);
+  }
+
+  .footer-container {
+    padding: 2rem 1rem;
+  }
+}

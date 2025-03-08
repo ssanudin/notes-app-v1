@@ -1,0 +1,31 @@
+{
+  "name": "notes_app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "start-dev": "webpack serve --config webpack.dev.js",
+    "prettier": "npx prettier . --write"
+  },
+  "author": "Sanudin",
+  "license": "ISC",
+  "description": "A Notes web application with REST API",
+  "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "babel-loader": "^9.2.1",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "prettier": "3.5.2",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0",
+    "webpack-merge": "^6.0.1"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "sweetalert2": "^11.17.2"
+  }
+}

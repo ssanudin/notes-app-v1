@@ -1,0 +1,58 @@
+# Ignore build/output directories
+/dist
+/build
+/out
+/coverage
+
+# Ignore dependency directories
+/node_modules
+
+# Ignore configuration files
+/.vscode
+/.idea
+/.github
+
+# Ignore logs and cache
+/logs
+/.cache
+/.npm
+/.yarn
+
+# Ignore environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore auto-generated files
+*.min.js
+*.min.css
+
+# Ignore specific file types
+*.md
+*.json
+*.yml
+*.yaml
+*.html
+*.txt
+
+# Ignore specific files
+README.md
+LICENSE
+CHANGELOG.md
+
+# Ignore test files (if not formatting them)
+/__tests__
+/__mocks__
+*.test.js
+*.spec.js
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
